@@ -209,3 +209,4 @@ class Benchmark:
         if progress_bar:
             progress_bar.finish()
         return fps, median_latency_ms, avg_latency_ms, min_latency_ms, max_latency_ms, total_duration_sec, iteration
+#some comment for tests
