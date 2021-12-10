@@ -35,6 +35,7 @@
 #include "pyopenvino/frontend/frontend_manager.hpp"
 #include "pyopenvino/frontend/inputmodel.hpp"
 #include "pyopenvino/frontend/place.hpp"
+#include "pyopenvino/graph/any.hpp"
 #include "pyopenvino/graph/descriptors/tensor.hpp"
 #include "pyopenvino/graph/dimension.hpp"
 #include "pyopenvino/graph/layout.hpp"
@@ -51,7 +52,6 @@
 #include "pyopenvino/graph/strides.hpp"
 #include "pyopenvino/graph/types/regmodule_graph_types.hpp"
 #include "pyopenvino/graph/util.hpp"
-#include "pyopenvino/graph/variant.hpp"
 
 namespace py = pybind11;
 
@@ -103,11 +103,11 @@ PYBIND11_MODULE(pyopenvino, m) {
     py::module m_preprocess =
         m.def_submodule("preprocess", "Package openvino.runtime.preprocess that wraps ov::preprocess");
     regclass_graph_PrePostProcessor(m_preprocess);
-    regclass_graph_Function(m);
+    regclass_graph_Model(m);
     regmodule_graph_passes(m);
     regmodule_graph_util(m);
     regmodule_graph_layout_helpers(m);
-    regclass_graph_Variant(m);
+    regclass_graph_Any(m);
     regclass_graph_Output<ov::Node>(m, std::string(""));
     regclass_graph_Output<const ov::Node>(m, std::string("Const"));
 
