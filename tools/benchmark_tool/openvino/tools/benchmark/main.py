@@ -60,7 +60,7 @@ def run(args):
         # ------------------------------ 2. Loading Inference Engine ---------------------------------------------------
         next_step(step_id=2)
 
-        benchmark = Benchmark(args.target_device, args.number_infer_requests,
+        benchmark = Benchmark(args.target_device, args.frames_per_second, args.number_infer_requests,
                               args.number_iterations, args.time, args.api_type)
 
         ## CPU (MKLDNN) extensions
@@ -377,6 +377,7 @@ def run(args):
                                     [
                                         ('first inference time (ms)', duration_ms)
                                     ])
+
         fps, latency_ms, total_duration_sec, iteration = benchmark.infer(exe_network, batch_size, args.latency_percentile, progress_bar)
 
         # ------------------------------------ 11. Dumping statistics report -------------------------------------------

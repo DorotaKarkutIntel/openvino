@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\samples",
+    "\\samples\\scripts",
+    "\\tools",
+    "\\tools\\benchmark_tool",
+    "\\tools\\benchmark_tool\\openvino",
+    "\\tools\\benchmark_tool\\openvino\\tools",
+    "\\tools\\benchmark_tool\\openvino\\tools\\benchmark"
+  ],
+  "SelectedNode": "\\tools\\benchmark_tool\\openvino\\tools\\benchmark\\main.py",
+  "PreviewInSolutionExplorer": false
+}

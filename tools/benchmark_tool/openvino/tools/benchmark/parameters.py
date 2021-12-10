@@ -143,6 +143,8 @@ def parse_args():
     args.add_argument('-imean', '--input_mean', type=str, required=False, default='',
                       help="Optional. Mean values to be used for the input image per channel.\n Values to be provided in the [R, G, B] format. Can be defined for desired input of the model.\n"
                            "Example: -imean data[255,255,255],info[255,255,255]\n")
+    args.add_argument('-fps', '--frames_per_second', type=int, required=False, default=0,
+                      help="Optional. Sets number of frames per second to passed value.")
     parsed_args = parser.parse_args()
 
     return parsed_args

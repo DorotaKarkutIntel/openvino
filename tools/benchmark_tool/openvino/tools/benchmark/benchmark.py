@@ -15,7 +15,7 @@ def percentile(values, percent):
     return values[ceil(len(values) * percent / 100) - 1]
 
 class Benchmark:
-    def __init__(self, device: str, number_infer_requests: int = None, number_iterations: int = None,
+    def __init__(self, device: str, fps: int, number_infer_requests: int = None, number_iterations: int = None,
                  duration_seconds: int = None, api_type: str = 'async'):
         self.device = device
         self.ie = IECore()
@@ -23,6 +23,7 @@ class Benchmark:
         self.niter = number_iterations
         self.duration_seconds = get_duration_seconds(duration_seconds, self.niter, self.device)
         self.api_type = api_type
+        self.fps = fps
 
     def __del__(self):
         del self.ie
@@ -159,7 +160,10 @@ class Benchmark:
             times.append(infer_requests[infer_request_id].latency)
         times.sort()
         latency_ms = percentile(times, latency_percentile)
-        fps = batch_size * 1000 / latency_ms if self.api_type == 'sync' else batch_size * iteration / total_duration_sec
+        if self.fps <= 0:
+            fps = batch_size * 1000 / latency_ms if self.api_type == 'sync' else batch_size * iteration / total_duration_sec
+        else:
+            fps = self.fps
         if progress_bar:
             progress_bar.finish()
         return fps, latency_ms, total_duration_sec, iteration
